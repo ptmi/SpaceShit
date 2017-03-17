@@ -15,10 +15,10 @@ import com.example.ptmi.spaceship.entity.Ship;
  * Created by ptmi on 2017.03.17..
  */
 
-public class GameView extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener, Runnable{
+public class GameView extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener{
 
 
-public static float x,y;
+public static float x2,y2;
 
 
     private Canvas canvas;
@@ -64,22 +64,14 @@ public static float x,y;
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        switch (event.getAction() & MotionEvent.ACTION_MASK) {
-            case MotionEvent.ACTION_DOWN:
-            case MotionEvent.ACTION_POINTER_DOWN:
-            case MotionEvent.ACTION_MOVE:
-                this.y = event.getY();
-                this.x = event.getX();
+        game.onTouch();
+         x2 = event.getX();
+         y2 = event.getY();
 
 
 
-
-
-        }
         return false;
-    }
-    @Override
-    public void run() {
+        }
 
-    }
+
 }

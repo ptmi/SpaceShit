@@ -66,6 +66,7 @@ public class Game extends Thread {
     }
 
     private void update() {
+
         player.update();
 
         // utkozes
@@ -91,10 +92,11 @@ public class Game extends Thread {
             objects.get(i).render(canvas);
         }
     }
-    private void touch(){
+    public void onTouch(){
+       player.x = GameView.x2;
+        player.y = GameView.y2;
+   }
 
-
-    }
 
 
 }
