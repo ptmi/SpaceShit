@@ -93,8 +93,9 @@ public class Game extends Thread {
         }
     }
     public void onTouch(){
-       player.x = GameView.x2;
-        player.y = GameView.y2;
+        player.x = width / 2;
+        player.y = height/2 - 400;
+
    }
 
 

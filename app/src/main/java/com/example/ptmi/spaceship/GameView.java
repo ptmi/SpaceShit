@@ -19,6 +19,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Vie
 
 
 public static float x2,y2;
+    public static MotionEvent event;
 
 
     private Canvas canvas;
@@ -62,11 +63,21 @@ public static float x2,y2;
 
     }
 
+    public static float getX2() {
+        return x2;
+    }
+
+    public static float getY2() {
+        return y2;
+    }
+
     @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        game.onTouch();
+    public boolean onTouch(View v,MotionEvent event) {
+        game.onTouch(event);
          x2 = event.getX();
          y2 = event.getY();
+        this.event = event;
+
 
 
 
