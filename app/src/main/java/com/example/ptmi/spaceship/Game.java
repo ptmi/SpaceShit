@@ -3,9 +3,9 @@ package com.example.ptmi.spaceship;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
-import com.example.ptmi.spaceship.entity.Asteroid;
 import com.example.ptmi.spaceship.entity.Entity;
 import com.example.ptmi.spaceship.entity.Ship;
 
@@ -17,6 +17,8 @@ import java.util.List;
  */
 
 public class Game extends Thread {
+    public final String TAG = Game.class.getSimpleName();
+
     SurfaceHolder surfaceHolder;
     public int width;
     public int height;
@@ -92,12 +94,18 @@ public class Game extends Thread {
             objects.get(i).render(canvas);
         }
     }
-    public void onTouch(){
-        player.x = width / 2;
-        player.y = height/2 - 400;
 
-   }
+    public boolean onTouch(MotionEvent event) { // itt van a jatekhoz kapcsolodo logika
+        Log.v(TAG, event.toString());
 
+        if (event.getAction() == MotionEvent.ACTION_MOVE ||
+                event.getAction() == MotionEvent.ACTION_DOWN ||
+                event.getAction() == MotionEvent.ACTION_POINTER_DOWN) {
+            player.setX(event.getX());
+            player.setY(event.getY());
 
-
+            return true; // return true ha lekezeltuk az eventet
+        }
+        return false; // false ha nem es akkor tovabbadhatja mas view-knak
+    }
 }

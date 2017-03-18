@@ -13,7 +13,7 @@ import com.example.ptmi.spaceship.GameView;
  */
 
 public class Ship extends Entity {
-   public static float x,y,r;
+   private float x,y,r;
 
     Paint paint =new Paint();
 
@@ -23,14 +23,12 @@ public class Ship extends Entity {
         this.y=y;
 
         r=50;
+        paint.setColor(Color.GREEN); // csak az elejen kell beallitani a szint, mert nem valtozik
     }
 
 
     @Override
     public void update() {
-        x = GameView.x;
-        y = GameView.y;
-
 
 
     }
@@ -38,6 +36,21 @@ public class Ship extends Entity {
     @Override
     public void render(Canvas canvas) {
         canvas.drawCircle(x,y,r,paint);
-        paint.setColor(Color.GREEN);
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
     }
 }
