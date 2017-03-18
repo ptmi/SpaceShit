@@ -11,19 +11,17 @@ import android.view.View;
 
 import com.example.ptmi.spaceship.entity.Ship;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by ptmi on 2017.03.17..
  */
 
-public class GameView extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener{
+public class GameView extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener {
 
 
-public static float x2,y2;
-    public static MotionEvent event;
     private final SurfaceHolder surfaceHolder;
     Game game;
-    private Canvas canvas;
-
 
 
     public GameView(Context context, AttributeSet attrs) {
@@ -31,15 +29,12 @@ public static float x2,y2;
 
         surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
+
+        //touch
+        setFocusable(true);
+        setOnTouchListener(this);
+
         game = new Game(surfaceHolder);
-    }
-
-    public static float getX2() {
-        return x2;
-    }
-
-    public static float getY2() {
-        return y2;
     }
 
     @Override
@@ -51,11 +46,9 @@ public static float x2,y2;
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 
         game.width = width;
-        game.height= height;
+        game.height = height;
 
         game.start(); // itt mar tudjuk a kepernyo meretet
-
-
 
 
     }
@@ -66,17 +59,10 @@ public static float x2,y2;
     }
 
     @Override
-    public boolean onTouch(View v,MotionEvent event) {
-        game.onTouch();
-         x2 = event.getX();
-         y2 = event.getY();
-        GameView.event = event;
+    public boolean onTouch(View v, MotionEvent event) {
+        return game.onTouch(event);
 
-
-
-
-        return false;
-        }
+    }
 
 
 }
