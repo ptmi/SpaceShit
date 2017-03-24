@@ -18,6 +18,7 @@ import java.util.List;
  */
 
 public class Game extends Thread {
+    public static Game game;
     public final String TAG = Game.class.getSimpleName();
     public int width;
     public int height;
@@ -28,6 +29,7 @@ public class Game extends Thread {
     public Game(SurfaceHolder surfaceHolder) {
 
         this.surfaceHolder = surfaceHolder;
+        game = this;
     }
 
     @Override
@@ -87,6 +89,11 @@ public class Game extends Thread {
         for (int i = 0; i < objects.size(); i++) {
             objects.get(i).update();
         }
+    }
+
+    private void addEntity(Entity e) {
+        objects.add(e);
+
     }
 
     private void render(Canvas canvas) {

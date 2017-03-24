@@ -1,11 +1,9 @@
-/*
+
 
 package com.example.ptmi.spaceship.entity;
 
 import android.graphics.Canvas;
 
-/**
- * Created by ptmi on 2017.03.18..
 
 public class Missile extends Entity{
     private float x,y;
@@ -27,4 +25,3 @@ public class Missile extends Entity{
 
     }
 }
-*/

@@ -1,4 +1,4 @@
-/*
+
 
 package com.example.ptmi.spaceship.entity;
 
@@ -10,8 +10,6 @@ import com.example.ptmi.spaceship.GameView;
 
 import java.util.Random;
 
-/**
- * Created by ptmi on 2017.03.17..
 
 
 public class Asteroid extends Entity {
@@ -23,18 +21,14 @@ public class Asteroid extends Entity {
 
 
     Paint paint = new Paint();
+    Random rnd = new Random();
+
 
     public Asteroid(){
         r = 10;
         y = height;
         x = 0;
     }
-
-
-
-    Random rnd = new Random();
-
-
 
     @Override
     public void update() {
@@ -49,4 +43,4 @@ public class Asteroid extends Entity {
 
     }
 }
-*/
+

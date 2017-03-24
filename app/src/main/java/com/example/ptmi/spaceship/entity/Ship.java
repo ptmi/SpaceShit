@@ -38,8 +38,6 @@ public class Ship extends Entity {
         y += dy / 30;
 
 
-
-
     }
 
     @Override
