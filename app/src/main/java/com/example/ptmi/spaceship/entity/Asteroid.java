@@ -10,30 +10,33 @@ import com.example.ptmi.spaceship.GameView;
 
 import java.util.Random;
 
+import static com.example.ptmi.spaceship.Game.game;
 
 
 public class Asteroid extends Entity {
-    Game game;
+
 
     public int width = game.width;
     public int height = game.height;
-    float x,y,r;
+
 
 
     Paint paint = new Paint();
-    Random rnd = new Random();
 
+    public Asteroid(float x, float y) {
+        super(x, y);
+        r = 30;
+    }
 
-    public Asteroid(){
-        r = 10;
-        y = height;
-        x = 0;
+    @Override
+    public void collison(Entity other) {
+
     }
 
     @Override
     public void update() {
-        x = rnd.nextInt(width + 1);
-        y = y+20;
+
+        y = y + 10;
 
     }
 

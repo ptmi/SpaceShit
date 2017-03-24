@@ -7,11 +7,13 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
 
+import com.example.ptmi.spaceship.entity.Asteroid;
 import com.example.ptmi.spaceship.entity.Entity;
 import com.example.ptmi.spaceship.entity.Ship;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by ptmi on 2017.03.17..
@@ -22,10 +24,12 @@ public class Game extends Thread {
     public final String TAG = Game.class.getSimpleName();
     public int width;
     public int height;
+    public int tick = 0;
     SurfaceHolder surfaceHolder;
     List<Entity> objects = new ArrayList<>(); // asteorids, bullets...
     Ship player;
 
+    Random rnd = new Random();
     public Game(SurfaceHolder surfaceHolder) {
 
         this.surfaceHolder = surfaceHolder;
@@ -62,42 +66,58 @@ public class Game extends Thread {
 
     }
 
+
     private void init() {
         // create player obj
 
         player = new Ship(width / 2, height / 2 + 400);
+        objects.add(player);
 
     }
 
     private void update() {
 
+        tick++;
 
-        player.update();
+        if (tick % 40 == 0) {
+            Entity asteroid = new Asteroid(rnd.nextInt(width + 1), -10);
+            addEntity(asteroid);
 
-        // utkozes
-
-        for (int i = 0; i < objects.size(); i++) {
-            Entity e = objects.get(i);
-           /* if (e instanceof Asteroid) {
-                Asteroid a = (Asteroid) e;
-
-                a.getRect().intersect(Ship.getRect());// utkozes
-            }*/
         }
 
         // update
         for (int i = 0; i < objects.size(); i++) {
             objects.get(i).update();
         }
+
+        // utkozes
+
+        for (int i = 0; i < objects.size(); i++) {
+            for (int j = i + 1; j < objects.size(); j++) {
+                Entity e1 = objects.get(i);
+                Entity e2 = objects.get(j);
+                if (e1.isColliding(e2)) {
+                    e2.collison(e1);
+                    e1.collison(e2);
+                }
+            }
+        }
+
+
+        for (int i = 0; i < objects.size(); i++) {
+            Entity entity = objects.get(i);
+            if (entity.getY() > height + entity.getR() || entity.isDead()) {
+                objects.remove(i);
+            }
+        }
     }
 
-    private void addEntity(Entity e) {
+    public void addEntity(Entity e) {
         objects.add(e);
 
     }
 
     private void render(Canvas canvas) {
-        player.render(canvas);
         for (int i = 0; i < objects.size(); i++) {
             objects.get(i).render(canvas);
         }
