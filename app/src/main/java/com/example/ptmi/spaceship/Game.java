@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
+
 import com.example.ptmi.spaceship.entity.Entity;
 import com.example.ptmi.spaceship.entity.Ship;
 
@@ -18,10 +19,11 @@ import java.util.List;
 
 public class Game extends Thread {
     public final String TAG = Game.class.getSimpleName();
-
-    SurfaceHolder surfaceHolder;
     public int width;
     public int height;
+    SurfaceHolder surfaceHolder;
+    List<Entity> objects = new ArrayList<>(); // asteorids, bullets...
+    Ship player;
 
     public Game(SurfaceHolder surfaceHolder) {
 
@@ -58,16 +60,15 @@ public class Game extends Thread {
 
     }
 
-    List<Entity> objects = new ArrayList<>(); // asteorids, bullets...
-    Ship player;
-
     private void init() {
         // create player obj
 
         player = new Ship(width / 2, height / 2 + 400);
+
     }
 
     private void update() {
+
 
         player.update();
 
@@ -101,8 +102,12 @@ public class Game extends Thread {
         if (event.getAction() == MotionEvent.ACTION_MOVE ||
                 event.getAction() == MotionEvent.ACTION_DOWN ||
                 event.getAction() == MotionEvent.ACTION_POINTER_DOWN) {
-            player.setX(event.getX());
-            player.setY(event.getY());
+            //player.setX(event.getX());
+            //   player.setY(event.getY());
+            player.newX = event.getX();
+            player.newY = event.getY();
+
+
 
             return true; // return true ha lekezeltuk az eventet
         }

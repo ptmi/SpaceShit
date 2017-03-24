@@ -13,7 +13,8 @@ import com.example.ptmi.spaceship.GameView;
  */
 
 public class Ship extends Entity {
-   private float x,y,r;
+    public float x, y, r;
+    public float newX, newY;
 
     Paint paint =new Paint();
 
@@ -29,6 +30,14 @@ public class Ship extends Entity {
 
     @Override
     public void update() {
+        float dx = newX - x;
+        float dy = newY - y;
+        float d = dx * dx + dy * dy;
+
+        x += dx / 30;
+        y += dy / 30;
+
+
 
 
     }
