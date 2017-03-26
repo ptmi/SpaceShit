@@ -1,5 +1,7 @@
 package com.example.ptmi.spaceship.entity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -18,7 +20,9 @@ import static com.example.ptmi.spaceship.Game.game;
 public class Ship extends Entity {
     public float newX, newY;
 
+
     Paint paint =new Paint();
+    GameView gameView;
 
 
     public Ship(float x, float y){
@@ -53,7 +57,8 @@ public class Ship extends Entity {
 
     @Override
     public void render(Canvas canvas) {
-        canvas.drawCircle(x,y,r,paint);
+        canvas.drawBitmap(GameView.bitmap, x - 105, y, paint);
+        // canvas.drawCircle(x,y,r,paint);
     }
 
     public float getX() {

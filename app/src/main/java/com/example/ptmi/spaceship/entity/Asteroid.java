@@ -18,6 +18,7 @@ public class Asteroid extends Entity {
 
     public int width = game.width;
     public int height = game.height;
+    GameView gameView;
 
 
 
@@ -42,7 +43,7 @@ public class Asteroid extends Entity {
 
     @Override
     public void render(Canvas canvas) {
-      canvas.drawCircle(x,y,r,paint);
+        canvas.drawBitmap(GameView.bitmap3, x, y, paint);
 
     }
 }

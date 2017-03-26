@@ -6,6 +6,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.example.ptmi.spaceship.GameView;
+
 import static com.example.ptmi.spaceship.Game.game;
 
 
@@ -13,6 +15,7 @@ public class Missile extends Entity{
 
     public int width = game.width;
     public int height = game.height;
+    GameView gameView;
 
     Paint paint = new Paint();
 
@@ -35,14 +38,14 @@ public class Missile extends Entity{
 
     @Override
     public void update() {
-        y -= 20;
+        y -= 35;
 
 
     }
 
     @Override
     public void render(Canvas canvas) {
-        canvas.drawCircle(x, y, r, paint);
+        canvas.drawBitmap(GameView.bitmap2, x, y, paint);
 
     }
 }

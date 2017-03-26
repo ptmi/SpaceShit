@@ -2,9 +2,11 @@ package com.example.ptmi.spaceship;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
+import android.view.View;
 
 
 import com.example.ptmi.spaceship.entity.Asteroid;
@@ -25,6 +27,7 @@ public class Game extends Thread {
     public int width;
     public int height;
     public int tick = 0;
+    GameView gameView;
     SurfaceHolder surfaceHolder;
     List<Entity> objects = new ArrayList<>(); // asteorids, bullets...
     Ship player;
@@ -36,10 +39,12 @@ public class Game extends Thread {
         game = this;
     }
 
+
     @Override
     public void run() {
         super.run();
         init();
+
 
         while (true) {
 
@@ -47,7 +52,8 @@ public class Game extends Thread {
             Canvas canvas = surfaceHolder.lockCanvas();
 
             if (canvas != null) {
-                canvas.drawColor(Color.BLUE);
+                canvas.drawBitmap(GameView.bitmap4, 0, 0, null);
+
 
                 update();
                 render(canvas);
@@ -79,7 +85,7 @@ public class Game extends Thread {
 
         tick++;
 
-        if (tick % 40 == 0) {
+        if (tick % 50 == 0) {
             Entity asteroid = new Asteroid(rnd.nextInt(width + 1), -10);
             addEntity(asteroid);
 
