@@ -2,6 +2,8 @@ package com.example.ptmi.spaceship;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.RectF;
+import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -85,6 +87,7 @@ public class Game extends Thread {
 
         tick++;
 
+
         if (tick % 50 == 0) {
             Entity asteroid = new Asteroid(rnd.nextInt(width + 1), -10);
             addEntity(asteroid);
@@ -106,7 +109,15 @@ public class Game extends Thread {
                     e2.collison(e1);
                     e1.collison(e2);
                 }
+                if (e2.isColliding(player)) {
+                    player.collison(e2);
+                    e2.collison(player);
+
+
+                }
+
             }
+
         }
 
 
@@ -127,6 +138,8 @@ public class Game extends Thread {
         for (int i = 0; i < objects.size(); i++) {
             objects.get(i).render(canvas);
         }
+
+
     }
 
     public boolean onTouch(MotionEvent event) { // itt van a jatekhoz kapcsolodo logika

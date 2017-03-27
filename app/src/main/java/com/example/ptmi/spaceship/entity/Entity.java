@@ -1,6 +1,7 @@
 package com.example.ptmi.spaceship.entity;
 
 import android.graphics.Canvas;
+import android.graphics.RectF;
 
 /**
  * Created by ptmi on 2017.03.17..
@@ -8,6 +9,8 @@ import android.graphics.Canvas;
 
 public abstract class Entity {
 
+
+    Asteroid asteroid;
     float x, y, r;
     private boolean dead = false;
 
@@ -39,6 +42,8 @@ public abstract class Entity {
 
     public abstract void render(Canvas canvas);
 
+    public abstract void hpDecrease(Canvas canvas);
+
     public float getDistanceSquare(Entity other) {
         float dx = other.x - x;
         float dy = other.y - y;
@@ -51,5 +56,9 @@ public abstract class Entity {
 
     public float getR() {
         return r;
+    }
+
+    public RectF getRect() {
+        return asteroid.rect;
     }
 }

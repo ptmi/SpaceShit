@@ -43,8 +43,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Vie
 
 
 
+
         surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
+
 
         //touch
         setFocusable(true);
@@ -55,6 +57,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Vie
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+
 
     }
 
