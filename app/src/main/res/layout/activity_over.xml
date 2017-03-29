@@ -27,9 +27,8 @@
         style="@android:style/Widget.Holo.Light.Button.Inset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/imageView"
         android:layout_below="@+id/imageView"
-        android:layout_marginEnd="69dp"
-        android:layout_marginTop="111dp"
-        android:text="Button" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="117dp"
+        android:text="New Game" />
 </RelativeLayout>

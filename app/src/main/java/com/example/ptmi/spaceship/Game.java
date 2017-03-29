@@ -32,9 +32,11 @@ public class Game extends Thread {
     public int tick = 0;
     int b = 0;
     GameView gameView;
+    GameActivity gameActivity;
     SurfaceHolder surfaceHolder;
     List<Entity> objects = new ArrayList<>(); // asteorids, bullets...
     Ship player;
+    Intent i = new Intent();
 
     Random rnd = new Random();
     public Game(SurfaceHolder surfaceHolder) {
@@ -164,7 +166,10 @@ public class Game extends Thread {
 
 
             }
-            if (game.tick % 35 == 0) {
+            if (game.tick % 45 == 0) {
+
+                gameActivity.intent();
+
 
 
             }

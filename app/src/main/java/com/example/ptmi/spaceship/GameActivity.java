@@ -14,11 +14,17 @@ import static com.example.ptmi.spaceship.R.layout.activity_game;
 
 public class GameActivity extends AppCompatActivity {
 
+    Intent r;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent i = new Intent(GameActivity.this, MainActivity.class);
+        r = new Intent(GameActivity.this, OverActivity.class);
+
+
+
+
 
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -35,6 +41,13 @@ public class GameActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
 
         getWindow().getDecorView().setSystemUiVisibility(mUIFlag);
+
+
+    }
+
+    public void intent() {
+
+        startActivity(r);
 
 
     }
