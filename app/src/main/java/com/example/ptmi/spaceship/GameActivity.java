@@ -1,5 +1,6 @@
 package com.example.ptmi.spaceship;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -15,16 +16,13 @@ import static com.example.ptmi.spaceship.R.layout.activity_game;
 public class GameActivity extends AppCompatActivity {
 
     Intent r;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         r = new Intent(GameActivity.this, OverActivity.class);
-
-
-
-
 
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);

@@ -168,6 +168,7 @@ public class Game extends Thread {
             }
             if (game.tick % 45 == 0) {
 
+                Intent i = new Intent(gameActivity.context, OverActivity.class);
                 gameActivity.intent();
 
 
