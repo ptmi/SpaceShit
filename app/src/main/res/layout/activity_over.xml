@@ -22,12 +22,14 @@
         android:layout_marginTop="56dp"
         app:srcCompat="@drawable/over" />
 
-    <TextView
-        android:id="@+id/textView2"
+    <Button
+        android:id="@+id/button2"
+        style="@android:style/Widget.Holo.Light.Button.Inset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/imageView"
         android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp"
-        android:text="TextView" />
+        android:layout_marginEnd="69dp"
+        android:layout_marginTop="111dp"
+        android:text="Button" />
 </RelativeLayout>
