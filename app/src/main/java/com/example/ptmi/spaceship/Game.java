@@ -1,5 +1,6 @@
 package com.example.ptmi.spaceship;
 
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
@@ -29,6 +30,7 @@ public class Game extends Thread {
     public int width;
     public int height;
     public int tick = 0;
+    int b = 0;
     GameView gameView;
     SurfaceHolder surfaceHolder;
     List<Entity> objects = new ArrayList<>(); // asteorids, bullets...
@@ -112,6 +114,7 @@ public class Game extends Thread {
                 if (e2.isColliding(player)) {
                     player.collison(e2);
                     e2.collison(player);
+                    objects.remove(j);
 
 
                 }
@@ -134,13 +137,42 @@ public class Game extends Thread {
 
     }
 
+
     private void render(Canvas canvas) {
-        for (int i = 0; i < objects.size(); i++) {
-            objects.get(i).render(canvas);
+        for (b = 0; b < objects.size(); b++) {
+            objects.get(b).render(canvas);
         }
 
+        if (player.dead == true) {
+            player.kill();
+            if (game.tick % 5 == 0) {
+                canvas.drawBitmap(GameView.expl1, player.getX() - 105, player.getY(), null);
 
-    }
+
+            }
+            if (game.tick % 15 == 0) {
+                canvas.drawBitmap(GameView.expl2, player.getX() - 105, player.getY(), null);
+
+
+            }
+            if (game.tick % 20 == 0) {
+                canvas.drawBitmap(GameView.expl3, player.getX() - 105, player.getY(), null);
+
+            }
+            if (game.tick % 25 == 0) {
+                canvas.drawBitmap(GameView.expl4, player.getX() - 105, player.getY(), null);
+
+
+            }
+            if (game.tick % 35 == 0) {
+
+
+            }
+
+
+        }
+        }
+
 
     public boolean onTouch(MotionEvent event) { // itt van a jatekhoz kapcsolodo logika
         Log.v(TAG, event.toString());

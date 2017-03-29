@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
+import android.view.ViewDebug;
 
 import com.example.ptmi.spaceship.Game;
 import com.example.ptmi.spaceship.GameActivity;
@@ -15,6 +16,7 @@ import com.example.ptmi.spaceship.GameView;
 import com.example.ptmi.spaceship.MainActivity;
 
 import static com.example.ptmi.spaceship.Game.game;
+import static java.lang.Thread.currentThread;
 
 /**
  * Created by ptmi on 2017.03.17..
@@ -22,9 +24,11 @@ import static com.example.ptmi.spaceship.Game.game;
 
 public class Ship extends Entity {
     public float newX, newY;
-    public float healthX;
+    public float healthX, hp;
+    public boolean dead = false;
     GameActivity gameActivity;
-
+    Canvas canvas;
+    int tick = 0;
 
     Paint paint =new Paint();
     Paint paint2 = new Paint();
@@ -39,19 +43,20 @@ public class Ship extends Entity {
         newX = x;
         newY = y;
         healthX = 125;
+        hp = 150;
         r=50;
         paint.setColor(Color.GREEN); // csak az elejen kell beallitani a szint, mert nem valtozik
-        paint2.setColor(Color.BLACK);
+        paint2.setColor(Color.RED);
         paint3.setColor(Color.TRANSPARENT);
 
     }
 
+
     @Override
     public void collison(Entity other) {
-        healthX -= 25;
 
-
-
+        hp -= 50;
+        Log.v("asd", Float.toString(healthX));
 
 
     }
@@ -59,10 +64,12 @@ public class Ship extends Entity {
 
     @Override
     public void update() {
+        tick++;
         float dx = newX - x;
         float dy = newY - y;
         float d = dx * dx + dy * dy;
         rect = new RectF(x - 105, y + 280, x + 125, y);
+
 
         x += dx / 30;
         y += dy / 30;
@@ -78,17 +85,28 @@ public class Ship extends Entity {
         return rect;
     }
 
-    public void hpDecrease(Canvas canvas) {
-        canvas.drawRect(x - 105, y + 280, x + healthX, y, paint3);
-
-    }
 
     @Override
     public void render(Canvas canvas) {
-        canvas.drawBitmap(GameView.bitmap, x - 105, y, null);
-        canvas.drawRect(x - 105, y + 280, x + 125, y + 270, paint2);
 
-        canvas.drawRect(x - 105, y + 280, x + 125, y + 270, paint);
+
+        if (hp != -150) {
+            canvas.drawBitmap(GameView.bitmap, x - 105, y, null);
+            canvas.drawRect(x + 150, y + 270, x - 150, y + 280, paint);
+            canvas.drawRect(x - hp, y + 270, x - 150, y + 280, paint2);
+
+        } else {
+
+            dead = true;
+
+
+        }
+    }
+
+
+    @Override
+    public void hpDecrease(Canvas canvas) {
+
     }
 
     public float getX() {

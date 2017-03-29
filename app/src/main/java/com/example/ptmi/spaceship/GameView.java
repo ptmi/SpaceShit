@@ -29,6 +29,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Vie
     public static Bitmap bitmap2;
     public static Bitmap bitmap3;
     public static Bitmap bitmap4;
+    public static Bitmap bitmap5;
+    public static Bitmap bitmap6;
+    public static Bitmap expl1;
+    public static Bitmap expl2;
+    public static Bitmap expl3;
+    public static Bitmap expl4;
+
     private final SurfaceHolder surfaceHolder;
     Game game;
 
@@ -39,8 +46,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Vie
         bitmap2 = BitmapFactory.decodeResource(context.getResources(), R.drawable.missile);
         bitmap3 = BitmapFactory.decodeResource(context.getResources(), R.drawable.asteroid);
         bitmap4 = BitmapFactory.decodeResource(context.getResources(), R.drawable.bg);
-
-
+        bitmap5 = BitmapFactory.decodeResource(context.getResources(), R.drawable.hp);
+        bitmap6 = bitmap5.copy(Bitmap.Config.ARGB_8888, true);
+        expl1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.expl1);
+        expl2 = BitmapFactory.decodeResource(context.getResources(), R.drawable.expl2);
+        expl3 = BitmapFactory.decodeResource(context.getResources(), R.drawable.expl3);
+        expl4 = BitmapFactory.decodeResource(context.getResources(), R.drawable.expl4);
 
 
 

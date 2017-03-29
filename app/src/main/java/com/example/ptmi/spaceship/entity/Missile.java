@@ -48,4 +48,9 @@ public class Missile extends Entity{
         canvas.drawBitmap(GameView.bitmap2, x, y, paint);
 
     }
+
+    @Override
+    public void hpDecrease(Canvas canvas) {
+
+    }
 }
