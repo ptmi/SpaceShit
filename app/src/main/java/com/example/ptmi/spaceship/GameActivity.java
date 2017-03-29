@@ -15,8 +15,14 @@ import static com.example.ptmi.spaceship.R.layout.activity_game;
 
 public class GameActivity extends AppCompatActivity {
 
+    public static GameActivity gameActivity;
     Intent r;
     Context context;
+
+    public GameActivity() {
+        gameActivity = this;
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,5 +1,6 @@
 package com.example.ptmi.spaceship;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -32,6 +33,7 @@ public class Game extends Thread {
     public int tick = 0;
     int b = 0;
     GameView gameView;
+    Context context;
     GameActivity gameActivity;
     SurfaceHolder surfaceHolder;
     List<Entity> objects = new ArrayList<>(); // asteorids, bullets...
@@ -41,10 +43,15 @@ public class Game extends Thread {
     Random rnd = new Random();
     public Game(SurfaceHolder surfaceHolder) {
 
+
         this.surfaceHolder = surfaceHolder;
         game = this;
     }
 
+    public void context(Context context) {
+        context = gameActivity.context;
+
+    }
 
     @Override
     public void run() {
@@ -168,8 +175,8 @@ public class Game extends Thread {
             }
             if (game.tick % 45 == 0) {
 
-                Intent i = new Intent(gameActivity.context, OverActivity.class);
-                gameActivity.intent();
+
+                GameActivity.gameActivity.intent();
 
 
 
