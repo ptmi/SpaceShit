@@ -2,15 +2,14 @@ package com.example.ptmi.spaceship;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.RectF;
-import android.graphics.Region;
-import android.graphics.drawable.Drawable;
+import android.graphics.Paint;
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
-import android.view.View;
 
 
 import com.example.ptmi.spaceship.entity.Asteroid;
@@ -20,6 +19,8 @@ import com.example.ptmi.spaceship.entity.Ship;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by ptmi on 2017.03.17..
@@ -31,27 +32,50 @@ public class Game extends Thread {
     public int width;
     public int height;
     public int tick = 0;
+    public Context context;
     int b = 0;
+    int score;
     GameView gameView;
-    Context context;
     GameActivity gameActivity;
     SurfaceHolder surfaceHolder;
     List<Entity> objects = new ArrayList<>(); // asteorids, bullets...
     Ship player;
     Intent i = new Intent();
+    Paint paint = new Paint();
+    MediaPlayer exp = new MediaPlayer();
+    MediaPlayer hit = new MediaPlayer();
+    MediaPlayer over = new MediaPlayer();
+    MediaPlayer explode = new MediaPlayer();
+
+
+
+
 
     Random rnd = new Random();
-    public Game(SurfaceHolder surfaceHolder) {
+
+    public Game(Context context, SurfaceHolder surfaceHolder) {
 
 
+        this.context = context;
+        hit = MediaPlayer.create(this.context, R.raw.hit);
+        exp = MediaPlayer.create(this.context, R.raw.exp);
+        over = MediaPlayer.create(this.context, R.raw.over);
+        explode = MediaPlayer.create(this.context, R.raw.explode);
         this.surfaceHolder = surfaceHolder;
         game = this;
+        paint.setColor(Color.MAGENTA);
+        score = 0;
+        paint.setTextSize(100);
+
+
     }
+
 
     public void context(Context context) {
         context = gameActivity.context;
 
     }
+
 
     @Override
     public void run() {
@@ -99,7 +123,7 @@ public class Game extends Thread {
         tick++;
 
 
-        if (tick % 50 == 0) {
+        if (tick % 40 == 0) {
             Entity asteroid = new Asteroid(rnd.nextInt(width + 1), -10);
             addEntity(asteroid);
 
@@ -119,16 +143,20 @@ public class Game extends Thread {
                 if (e1.isColliding(e2)) {
                     e2.collison(e1);
                     e1.collison(e2);
+                    score += 1;
+                    hit.start();
+
                 }
                 if (e2.isColliding(player)) {
                     player.collison(e2);
                     e2.collison(player);
                     objects.remove(j);
+                    exp.start();
 
 
                 }
-
             }
+
 
         }
 
@@ -148,12 +176,19 @@ public class Game extends Thread {
 
 
     private void render(Canvas canvas) {
+
         for (b = 0; b < objects.size(); b++) {
             objects.get(b).render(canvas);
         }
 
+
+        canvas.drawText("Score:" + String.valueOf(score), 2, 80, paint);
+
+
+
         if (player.dead == true) {
             player.kill();
+            explode.start();
             if (game.tick % 5 == 0) {
                 canvas.drawBitmap(GameView.expl1, player.getX() - 105, player.getY(), null);
 

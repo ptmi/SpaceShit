@@ -31,6 +31,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Vie
     public static Bitmap bitmap4;
     public static Bitmap bitmap5;
     public static Bitmap bitmap6;
+    public static Bitmap bitmap7;
     public static Bitmap expl1;
     public static Bitmap expl2;
     public static Bitmap expl3;
@@ -52,6 +53,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Vie
         expl2 = BitmapFactory.decodeResource(context.getResources(), R.drawable.expl2);
         expl3 = BitmapFactory.decodeResource(context.getResources(), R.drawable.expl3);
         expl4 = BitmapFactory.decodeResource(context.getResources(), R.drawable.expl4);
+        bitmap7 = BitmapFactory.decodeResource(context.getResources(), R.drawable.star);
 
 
 
@@ -63,7 +65,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Vie
         setFocusable(true);
         setOnTouchListener(this);
 
-        game = new Game(surfaceHolder);
+        game = new Game(context, surfaceHolder);
     }
 
     @Override

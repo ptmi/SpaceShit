@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.ViewDebug;
 
@@ -14,6 +15,7 @@ import com.example.ptmi.spaceship.Game;
 import com.example.ptmi.spaceship.GameActivity;
 import com.example.ptmi.spaceship.GameView;
 import com.example.ptmi.spaceship.MainActivity;
+import com.example.ptmi.spaceship.R;
 
 import static com.example.ptmi.spaceship.Game.game;
 import static java.lang.Thread.currentThread;
@@ -23,23 +25,25 @@ import static java.lang.Thread.currentThread;
  */
 
 public class Ship extends Entity {
+    public static Ship ship;
     public float newX, newY;
     public float healthX, hp;
     public boolean dead = false;
     GameActivity gameActivity;
     Canvas canvas;
     int tick = 0;
-
     Paint paint =new Paint();
     Paint paint2 = new Paint();
     Paint paint3 = new Paint();
     GameView gameView;
+    MediaPlayer over = new MediaPlayer();
     private RectF rect;
 
 
 
     public Ship(float x, float y){
         super(x, y);
+        over = MediaPlayer.create(Game.game.context, R.raw.over);
         newX = x;
         newY = y;
         healthX = 125;
@@ -91,13 +95,16 @@ public class Ship extends Entity {
 
 
         if (hp != -150) {
-            canvas.drawBitmap(GameView.bitmap, x - 105, y, null);
+            canvas.drawBitmap(GameView.bitmap, x - 110, y, null);
             canvas.drawRect(x + 150, y + 270, x - 150, y + 280, paint);
             canvas.drawRect(x - hp, y + 270, x - 150, y + 280, paint2);
+
 
         } else {
 
             dead = true;
+            over.start();
+
 
 
         }

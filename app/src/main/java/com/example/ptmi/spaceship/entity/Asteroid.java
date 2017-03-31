@@ -3,6 +3,7 @@
 package com.example.ptmi.spaceship.entity;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
@@ -25,8 +26,9 @@ public class Asteroid extends Entity {
 
     public Asteroid(float x, float y) {
         super(x, y);
-        r = 30;
+        r = 50;
         rect = new RectF(x, y, x + 10, y + 10);
+        paint.setColor(Color.TRANSPARENT);
     }
 
     public RectF getRect() {
@@ -47,7 +49,11 @@ public class Asteroid extends Entity {
 
     @Override
     public void render(Canvas canvas) {
-        canvas.drawBitmap(GameView.bitmap3, x, y, paint);
+
+
+        canvas.drawCircle(x, y + 40, r, paint);
+        canvas.drawBitmap(GameView.bitmap3, x - 45, y, null);
+
 
     }
 
